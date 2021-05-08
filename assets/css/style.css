@@ -43,6 +43,7 @@ a {
     margin: 10px 0;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
 }
 /* HEADER STYLES */
 header {
@@ -54,6 +55,10 @@ header {
     background-color: rgb(215, 215, 215);
     position: relative;
 }
+main {
+    /* visibility: hidden; */
+    position: relative;
+}
 #logo-container h1 {
     font-weight: 400;
 }
@@ -63,6 +68,7 @@ header {
 #high-score-link {
     position: absolute;
     top: 5px;
+    right: 5px;
 }
 #current-score {
     font-weight: 400;
@@ -92,4 +98,27 @@ header {
     border-top: black 2px solid;
     width: 80%;
     margin: 0 auto;
+}
+#start-modal {
+    text-align: center;
+    width: 70%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(228, 228, 228, 0.741);
+    backdrop-filter: blur(6px);
+    padding: 40px;
+    height: 40vh;
+    border-radius: 50px;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+#start-modal h1 {
+    margin-bottom: 20px;
+}
+#start-modal p {
+    font-size: 28px;
 }

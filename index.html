@@ -19,7 +19,8 @@
             </div>
             <!-- current leader label -->
             <div id="current-leader-container">
-                <h3 class="highlight">Current Leader: 
+                <h3 class="highlight">
+                    Current Leader:
                     <span id="current-leader"></span>
                 </h3>
             </div>
@@ -29,25 +30,39 @@
                     <a href="#">VIEW HIGH SCORES</a>
                 </div>
                 <div id="current-score-container">
-                    <h3 class="highlight">Current Score: <span id="current-score"></span></h3>
+                    <h3 class="highlight">
+                        Current Score: <span id="current-score"></span>
+                    </h3>
                 </div>
             </div>
         </header>
         <main>
+            <!-- Start Modal -->
+            <div id="start-modal">
+                <h1>Coding quiz Challenge</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Sapiente, aperiam eos. Temporibus facilis deserunt quaerat
+                    nisi magni reprehenderit corporis unde non ut, in saepe
+                    explicabo praesentium nostrum aliquam molestias dolore
+                    facere veritatis molestiae cumque ab iure, sit laboriosam.
+                    Vel quae cumque nesciunt laboriosam voluptate, quos iure rem
+                    ipsam officiis delectus.
+                </p>
+                <button class="btn" id="start-game-btn">Start Challenge</button>
+            </div>
             <!-- Timer Countdown -->
             <div id="time-left-container">
-                <h3 id="countdown" class="highlight">
-                    
-                </h3>
+                <h3 id="countdown" class="highlight"></h3>
             </div>
             <!-- Question Block -->
             <div id="questions-container">
                 <h2 id="question">What time is it?</h2>
                 <div id="possible-answers">
-                    <button class="btn" id="pa1">1. example Answer</button>
-                    <button class="btn" id="pa2">2. example Answer</button>
-                    <button class="btn" id="pa3">3. example Answer</button>
-                    <button class="btn" id="pa4">4. example Answer</button>
+                    <button class="btn" id="pa1">1. Red</button>
+                    <button class="btn" id="pa2">2. Blue</button>
+                    <button class="btn" id="pa3">3. Green</button>
+                    <button class="btn" id="pa4">4. Yellow</button>
                 </div>
             </div>
             <!-- Display Right or Wrong -->
@@ -55,6 +70,7 @@
                 <h3>Right/Wrong</h3>
             </div>
         </main>
+
         <script src="./assets/js/game.js"></script>
     </body>
 </html>
