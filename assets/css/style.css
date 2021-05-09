@@ -97,7 +97,6 @@ main {
     padding: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-
 }
 .pa-answers {
     float: right;
@@ -127,7 +126,6 @@ main {
     left: 0;
     right: 0;
     transition: all ease-in 0.5s;
-    /* visibility: hidden; */
 }
 #start-modal h1 {
     margin-bottom: 20px;

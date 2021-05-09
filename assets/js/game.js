@@ -4,72 +4,84 @@ let timeLeft = 90;
 var questions = [
     {
         question: "What does === mean?",
-        answer: {
-            a: "Equal to data type and value",
-            b: "Equal to data type",
-            c: "Equal to value",
-            d: "Equal to a variable",
-        },
+        a: "Equal to data type and value",
+        b: "Equal to data type",
+        c: "Equal to value",
+        d: "Equal to a variable",
+        answer: 1,
     },
-    { question: "A Boolean is a Number.", answer: { a: false, b: true } },
     {
-        question: "What data type is not Primitive",
-        answer: { a: "integer", b: "variable", c: "string", d: "boolean" },
+        question: "A Boolean is a Number.",
+        a: false,
+        b: true,
+        answer: 1,
+    },
+    {
+        question: "What is not a Primitive data type ",
+        a: "integer",
+        b: "variable",
+        c: "string",
+        d: "boolean",
+        answer: 2,
     },
     {
         question: "Contatination is achieved by the + symbol.",
-        answer: { a: true, b: false },
+        a: true,
+        b: false,
+        answer: 1,
     },
     {
         question: "A function always has these two symbols",
-        answer: {
-            a: ". and {}",
-            b: "() and ''",
-            c: "{} and ()",
-            d: "if and else",
-        },
+        a: ". and {}",
+        b: "() and ''",
+        c: "{} and ()",
+        d: "if and else",
+        answer: 3,
     },
     {
         question:
             "When declaring a function what is the placeholder called when you want to pass in an argument",
-        answer: { a: "variable", b: "integer", c: "Parameter", d: "Method" },
+        a: "variable",
+        b: "integer",
+        c: "Parameter",
+        d: "Method",
+        answer: 3,
     },
     {
         question: "What denotes a comment in Javascript?",
-        answer: { a: "<-- -->", b: "//", c: "/*", d: "./" },
+        a: "<-- -->",
+        b: "//",
+        c: "/*",
+        d: "./",
+        answer: 2,
     },
     {
         question: "If I were to use parseInt(), what whould I be converting?",
-        answer: {
-            a: "string to integer",
-            b: "array to variable",
-            c: "boolean to integer",
-            d: "integer to string",
-        },
+        a: "string to integer",
+        b: "array to variable",
+        c: "boolean to integer",
+        d: "integer to string",
+        answer: 1,
     },
     {
         question: "What does NaN stand for?",
-        answer: {
-            a: "Not a Numeral",
-            b: "Not a Node",
-            c: "Not a Navigator",
-            d: "Not a Number",
-        },
+        a: "Not a Numeral",
+        b: "Not a Node",
+        c: "Not a Navigator",
+        d: "Not a Number",
+        answer: 4,
     },
     {
-        question: "Where does hoisting mean?",
-        answer: {
-            a: "Move to top",
-            b: "Send out of function",
-            c: "Saves it for last",
-            d: "Move to Bottom",
-        },
+        question: "What does hoisting mean?",
+        a: "Move to top",
+        b: "Send out of function",
+        c: "Saves it for last",
+        d: "Move to Bottom",
+        answer: 1,
     },
 ];
-let randomArrAnswerStrings = Object.values(questions[Math.floor(Math.random() * questions.length)].answer)
-let randomArrAnswerletters = Object.keys(questions[Math.floor(Math.random() * questions.length)].answer)
-console.log(randomArrAnswerletters);
 
+//  Make sure lable letters match on the DOM
 
 // Capture DOM El
 let modalEl = document.querySelector("#start-modal");
@@ -89,6 +101,7 @@ let rightWrongEl = document.querySelector("#right-wrong");
 let currentLeader = localStorage.getItem("highScorer");
 let currentScore = localStorage.getItem("highScore");
 
+
 // Set current leader in header on Page
 if (currentLeader === null) {
     currentLeaderEl.textContent = "Be The First!";
@@ -100,15 +113,18 @@ if (currentScore === null) {
 } else {
     currentScoreEl.textContent = currentScore;
 }
-const randomSelection = () => {
-    Object.keys(questions[Math.floor(Math.random() * questions.length)])
-        .length - 1;
-};
-const populateQA = () => {};
 
-const startGame = () => {
+startGame = () => {
+    shuffleArray(questions);
     // Hide the modal
     modalEl.style.display = "none";
+    for (var i = 0; i < questions.length; i++) {
+        questionEl.textContent = questions[i].question;
+        pa1El.textContent = questions[i].answer.a;
+        pa2El.textContent = questions[i].answer.b;
+        pa3El.textContent = questions[i].answer.c;
+        pa4El.textContent = questions[i].answer.d;
+    }
 };
 // set up a timer function when button is clicked and call the game start
 
