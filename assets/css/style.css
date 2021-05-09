@@ -39,7 +39,6 @@ a {
 .btn {
     width: 30%;
     font-size: 30px;
-    padding: 10px;
     margin: 10px 0;
     border-radius: 10px;
     border: none;
@@ -92,6 +91,18 @@ main {
     margin-top: 5%;
     margin-bottom: 5%;
 }
+.pa-label-letters {
+    float: left;
+    background-color: rgba(169, 169, 169, 0.741);
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+.pa-answers {
+    float: right;
+    padding: 10px;
+}
 #right-wrong {
     text-align: center;
     padding: 20px;
@@ -110,15 +121,21 @@ main {
     background-color: rgba(228, 228, 228, 0.741);
     backdrop-filter: blur(6px);
     padding: 40px;
-    height: 40vh;
+    min-height: 20vw;
     border-radius: 50px;
     position: absolute;
     left: 0;
     right: 0;
+    transition: all ease-in 0.5s;
+    /* visibility: hidden; */
 }
 #start-modal h1 {
     margin-bottom: 20px;
 }
 #start-modal p {
-    font-size: 28px;
+    font-size: 2em;
+}
+#start-game-btn {
+    background-color: rgba(169, 169, 169, 0.741);
+    padding: 20px;
 }

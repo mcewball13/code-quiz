@@ -1,18 +1,76 @@
 // global vars
-let timeLeft = 5;
+let timeLeft = 90;
 // store questions and answers in an object array
 var questions = [
-    {q: "What does === mean?", a: "Equal to data type and value"},
-    {q: "A Boolean is a Number.", a: false},
-    {q: "What data type is not Primitive", a: "Variable"},
-    {q: "Contatination is achieved by the + symbol.", a: true},
-    {q: "A function always has these two symbols", a: "() and {}"},
-    {q: "When declaring a function what is the placeholder called when you want to pass in an argument", a: "Parameter"},
-    {q: "What denotes a comment in Javascript?", a: "//"},
-    {q: "If I were to use parseInt(), what whould I be doing?", a: "Turning a string into a number"},
-    {q: "What does NaN stand for?", a: "Not a Number"},
-    {q: "Where do hoisted functions go?", a: "To the top"},
-]
+    {
+        question: "What does === mean?",
+        answer: {
+            a: "Equal to data type and value",
+            b: "Equal to data type",
+            c: "Equal to value",
+            d: "Equal to a variable",
+        },
+    },
+    { question: "A Boolean is a Number.", answer: { a: false, b: true } },
+    {
+        question: "What data type is not Primitive",
+        answer: { a: "integer", b: "variable", c: "string", d: "boolean" },
+    },
+    {
+        question: "Contatination is achieved by the + symbol.",
+        answer: { a: true, b: false },
+    },
+    {
+        question: "A function always has these two symbols",
+        answer: {
+            a: ". and {}",
+            b: "() and ''",
+            c: "{} and ()",
+            d: "if and else",
+        },
+    },
+    {
+        question:
+            "When declaring a function what is the placeholder called when you want to pass in an argument",
+        answer: { a: "variable", b: "integer", c: "Parameter", d: "Method" },
+    },
+    {
+        question: "What denotes a comment in Javascript?",
+        answer: { a: "<-- -->", b: "//", c: "/*", d: "./" },
+    },
+    {
+        question: "If I were to use parseInt(), what whould I be converting?",
+        answer: {
+            a: "string to integer",
+            b: "array to variable",
+            c: "boolean to integer",
+            d: "integer to string",
+        },
+    },
+    {
+        question: "What does NaN stand for?",
+        answer: {
+            a: "Not a Numeral",
+            b: "Not a Node",
+            c: "Not a Navigator",
+            d: "Not a Number",
+        },
+    },
+    {
+        question: "Where does hoisting mean?",
+        answer: {
+            a: "Move to top",
+            b: "Send out of function",
+            c: "Saves it for last",
+            d: "Move to Bottom",
+        },
+    },
+];
+let randomArrAnswerStrings = Object.values(questions[Math.floor(Math.random() * questions.length)].answer)
+let randomArrAnswerletters = Object.keys(questions[Math.floor(Math.random() * questions.length)].answer)
+console.log(randomArrAnswerletters);
+
+
 // Capture DOM El
 let modalEl = document.querySelector("#start-modal");
 let currentLeaderEl = document.querySelector("#current-leader");
@@ -27,7 +85,6 @@ let pa4El = document.querySelector("#pa4");
 let startGamebtn = document.querySelector("#start-game-btn");
 let rightWrongEl = document.querySelector("#right-wrong");
 
-
 // local storage
 let currentLeader = localStorage.getItem("highScorer");
 let currentScore = localStorage.getItem("highScore");
@@ -36,36 +93,38 @@ let currentScore = localStorage.getItem("highScore");
 if (currentLeader === null) {
     currentLeaderEl.textContent = "Be The First!";
 } else {
-    currentLeaderEl.textContent = currentLeader
+    currentLeaderEl.textContent = currentLeader;
 }
 if (currentScore === null) {
-    currentScoreEl.textContent = "No Score Yet!"
+    currentScoreEl.textContent = "No Score Yet!";
 } else {
     currentScoreEl.textContent = currentScore;
 }
+const randomSelection = () => {
+    Object.keys(questions[Math.floor(Math.random() * questions.length)])
+        .length - 1;
+};
+const populateQA = () => {};
 
-// set up a timer function
-let timerCountdown = () => {
-    setInterval(() => {
-        if (timeLeft <= 0) {
-            timeLeftEl.textContent = "Times up!";
-            clearInterval(timerCountdown);
-        } else {
-            timeLeftEl.textContent = "Time Left: " + timeLeft;
-            timeLeft--;
-        }
-    }, 1000);
-}
-
-var startGame = () => {
+const startGame = () => {
+    // Hide the modal
     modalEl.style.display = "none";
-}
+};
+// set up a timer function when button is clicked and call the game start
 
 startGamebtn.addEventListener("click", () => {
+    timeLeftEl.textContent = "Time Left: " + timeLeft;
+    let timerCountdown = setInterval(() => {
+        timeLeftEl.textContent = "Time Left: " + (timeLeft - 1);
+        timeLeft--;
+        if (timeLeft < 0) {
+            // timeLeftEl.textContent = "Time Left: " + timeLeft;
+            timeLeftEl.textContent = "Times up!";
+            clearInterval(timerCountdown);
+        }
+    }, 1000);
     startGame();
-})
-
-
+});
 
 // current leader append child with value of high scorer else Be the First!
 
