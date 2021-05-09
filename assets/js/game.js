@@ -1,7 +1,6 @@
 // global vars
 let timeLeft = 90;
 let currentQuestion = {};
-let currentQuestionIndex = 0;
 let score = 0;
 let questionsPool = [];
 const correctAnswer = 10;
@@ -117,7 +116,6 @@ if (currentScore === null) {
 }
 
 startGame = () => {
-    currentQuestionIndex = 0;
     score = 0;
     questionsPool = [...questions];
     console.log(questionsPool);
@@ -127,7 +125,6 @@ startGame = () => {
 };
 
 populateNextQuestion = () => {
-    currentQuestionIndex++;
     let questionIndex = Math.floor(Math.random() * questionsPool.length);
     currentQuestion = questionsPool[questionIndex];
     questionEl.textContent = currentQuestion.question;
