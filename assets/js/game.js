@@ -18,8 +18,8 @@ var questions = [
     },
     {
         question: "A Boolean is a Number.",
-        a: false,
-        b: true,
+        a: true,
+        b: false,
         answer: 1,
     },
     {
@@ -102,6 +102,7 @@ let rightWrongEl = document.querySelector("#right-wrong");
 // local storage
 let currentLeader = localStorage.getItem("highScorer");
 let currentScore = localStorage.getItem("highScore");
+console.log(paBtns);
 
 // Set current leader in header on Page
 if (currentLeader === null) {
@@ -119,6 +120,7 @@ startGame = () => {
     currentQuestionIndex = 0;
     score = 0;
     questionsPool = [...questions];
+    console.log(questionsPool);
     populateNextQuestion();
     // Hide the modal
     modalEl.style.display = "none";
@@ -126,13 +128,19 @@ startGame = () => {
 
 populateNextQuestion = () => {
     currentQuestionIndex++;
-    let = QuestionIndex = Math.floor(Math.random() * questionsPool.length);
-    currentQuestion = questionsPool[QuestionIndex];
+    let questionIndex = Math.floor(Math.random() * questionsPool.length);
+    currentQuestion = questionsPool[questionIndex];
     questionEl.textContent = currentQuestion.question;
 
-    // paBtns.forEach(paBtn => {
-    //     paBtn.textContent = currentQuestion[];
-    // })
+    paBtns.forEach((paBtn) => {
+        let property = paBtn.dataset["property"];
+        console.log(property);
+        paBtn.innerText = currentQuestion[property];
+        if (paBtn.innerText === "undefined") {
+            paBtn.parentElement.style.display = "none";
+        }
+    });
+    questionsPool.splice(questionIndex, 1);
 };
 // set up a timer function when button is clicked and call the game start
 
