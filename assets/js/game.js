@@ -1,5 +1,11 @@
 // global vars
 let timeLeft = 90;
+let currentQuestion = {};
+let currentQuestionIndex = 0;
+let score = 0;
+let questionsPool = [];
+const correctAnswer = 10;
+
 // store questions and answers in an object array
 var questions = [
     {
@@ -90,17 +96,12 @@ let currentScoreEl = document.querySelector("#current-score");
 let timeLeftEl = document.querySelector("#countdown");
 let timeLeftContainEl = document.querySelector("#time-left-container");
 let questionEl = document.querySelector("#question");
-let pa1El = document.querySelector("#pa1");
-let pa2El = document.querySelector("#pa2");
-let pa3El = document.querySelector("#pa3");
-let pa4El = document.querySelector("#pa4");
+let paBtns = document.querySelectorAll(".pa-btn");
 let startGamebtn = document.querySelector("#start-game-btn");
 let rightWrongEl = document.querySelector("#right-wrong");
-
 // local storage
 let currentLeader = localStorage.getItem("highScorer");
 let currentScore = localStorage.getItem("highScore");
-
 
 // Set current leader in header on Page
 if (currentLeader === null) {
@@ -115,16 +116,23 @@ if (currentScore === null) {
 }
 
 startGame = () => {
-    shuffleArray(questions);
+    currentQuestionIndex = 0;
+    score = 0;
+    questionsPool = [...questions];
+    populateNextQuestion();
     // Hide the modal
     modalEl.style.display = "none";
-    for (var i = 0; i < questions.length; i++) {
-        questionEl.textContent = questions[i].question;
-        pa1El.textContent = questions[i].answer.a;
-        pa2El.textContent = questions[i].answer.b;
-        pa3El.textContent = questions[i].answer.c;
-        pa4El.textContent = questions[i].answer.d;
-    }
+};
+
+populateNextQuestion = () => {
+    currentQuestionIndex++;
+    let = QuestionIndex = Math.floor(Math.random() * questionsPool.length);
+    currentQuestion = questionsPool[QuestionIndex];
+    questionEl.textContent = currentQuestion.question;
+
+    // paBtns.forEach(paBtn => {
+    //     paBtn.textContent = currentQuestion[];
+    // })
 };
 // set up a timer function when button is clicked and call the game start
 
