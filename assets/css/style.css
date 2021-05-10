@@ -43,6 +43,9 @@ a {
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /* HEADER STYLES */
 header {
@@ -92,15 +95,14 @@ main {
     margin-bottom: 5%;
 }
 .pa-label-letters {
-    float: left;
     background-color: rgba(169, 169, 169, 0.741);
     padding: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
-.pa-answers {
-    float: right;
-    padding: 10px;
+
+.pa-btn {
+    width: 100%;
 }
 #right-wrong {
     text-align: center;
@@ -137,3 +139,4 @@ main {
     background-color: rgba(169, 169, 169, 0.741);
     padding: 20px;
 }
+

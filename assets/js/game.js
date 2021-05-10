@@ -1,9 +1,11 @@
 // global vars
-let timeLeft = 90;
+let timeLeft = 3;
 let currentQuestion = {};
 let score = 0;
 let questionsPool = [];
+let outOfTime = false;
 const correctAnswer = 10;
+const timePenalty = 10;
 
 // store questions and answers in an object array
 var questions = [
@@ -13,13 +15,13 @@ var questions = [
         b: "Equal to data type",
         c: "Equal to value",
         d: "Equal to a variable",
-        answer: 1,
+        answer: "a",
     },
     {
         question: "A Boolean is a Number.",
         a: true,
         b: false,
-        answer: 1,
+        answer: "b",
     },
     {
         question: "What is not a Primitive data type ",
@@ -27,13 +29,13 @@ var questions = [
         b: "variable",
         c: "string",
         d: "boolean",
-        answer: 2,
+        answer: "b",
     },
     {
         question: "Contatination is achieved by the + symbol.",
         a: true,
         b: false,
-        answer: 1,
+        answer: "a",
     },
     {
         question: "A function always has these two symbols",
@@ -41,7 +43,7 @@ var questions = [
         b: "() and ''",
         c: "{} and ()",
         d: "if and else",
-        answer: 3,
+        answer: "c",
     },
     {
         question:
@@ -50,7 +52,7 @@ var questions = [
         b: "integer",
         c: "Parameter",
         d: "Method",
-        answer: 3,
+        answer: "c",
     },
     {
         question: "What denotes a comment in Javascript?",
@@ -58,7 +60,7 @@ var questions = [
         b: "//",
         c: "/*",
         d: "./",
-        answer: 2,
+        answer: "b",
     },
     {
         question: "If I were to use parseInt(), what whould I be converting?",
@@ -66,7 +68,7 @@ var questions = [
         b: "array to variable",
         c: "boolean to integer",
         d: "integer to string",
-        answer: 1,
+        answer: "a",
     },
     {
         question: "What does NaN stand for?",
@@ -74,7 +76,7 @@ var questions = [
         b: "Not a Node",
         c: "Not a Navigator",
         d: "Not a Number",
-        answer: 4,
+        answer: "d",
     },
     {
         question: "What does hoisting mean?",
@@ -82,7 +84,7 @@ var questions = [
         b: "Send out of function",
         c: "Saves it for last",
         d: "Move to Bottom",
-        answer: 1,
+        answer: "a",
     },
 ];
 
@@ -98,10 +100,10 @@ let questionEl = document.querySelector("#question");
 let paBtns = document.querySelectorAll(".pa-btn");
 let startGamebtn = document.querySelector("#start-game-btn");
 let rightWrongEl = document.querySelector("#right-wrong");
+
 // local storage
 let currentLeader = localStorage.getItem("highScorer");
-let currentScore = localStorage.getItem("highScore");
-console.log(paBtns);
+let currentScore = localStorage.getItem("currentScore");
 
 // Set current leader in header on Page
 if (currentLeader === null) {
@@ -116,32 +118,69 @@ if (currentScore === null) {
 }
 
 startGame = () => {
+    
+    outOfTime = false;
     score = 0;
     questionsPool = [...questions];
-    console.log(questionsPool);
     populateNextQuestion();
     // Hide the modal
     modalEl.style.display = "none";
 };
 
+checkHighScore = () => {
+    if (currentLeader !== "null") {
+        if (currentScore > currentLeader) {
+            localStorage.setItem("highScorer", currentScore);
+        }
+        // Else better luck next time
+    } else {
+        localStorage.setItem("highScorer", currentScore);
+    }
+};
+checkGameOver = () => {
+    if (outOfTime) {
+        checkHighScore();
+        setInterval(() => {
+            return location.assign("/end.html");
+        }, 1000);
+    }
+    if (questionsPool.length === 0) {
+        checkHighScore();
+        return location.assign("/end.html");
+    }
+};
 populateNextQuestion = () => {
+    checkGameOver();
     let questionIndex = Math.floor(Math.random() * questionsPool.length);
     currentQuestion = questionsPool[questionIndex];
     questionEl.textContent = currentQuestion.question;
 
     paBtns.forEach((paBtn) => {
         let property = paBtn.dataset["property"];
-        console.log(property);
         paBtn.innerText = currentQuestion[property];
         if (paBtn.innerText === "undefined") {
             paBtn.parentElement.style.display = "none";
+        } else {
+            paBtn.parentElement.style.display = "inherit";
         }
     });
     questionsPool.splice(questionIndex, 1);
 };
+paBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        let selectedAnswer = e.target;
+        let selectedAnswerProperty = selectedAnswer.dataset["property"];
+        if (selectedAnswerProperty == currentQuestion.answer) {
+            score += correctAnswer;
+            localStorage.setItem("currentScore", score);
+        } else {
+            timeLeft -= timePenalty;
+        }
+        populateNextQuestion();
+    });
+});
 // set up a timer function when button is clicked and call the game start
-
-startGamebtn.addEventListener("click", () => {
+startCountdown = () => {
     timeLeftEl.textContent = "Time Left: " + timeLeft;
     let timerCountdown = setInterval(() => {
         timeLeftEl.textContent = "Time Left: " + (timeLeft - 1);
@@ -150,8 +189,14 @@ startGamebtn.addEventListener("click", () => {
             // timeLeftEl.textContent = "Time Left: " + timeLeft;
             timeLeftEl.textContent = "Times up!";
             clearInterval(timerCountdown);
+            outOfTime = true;
+            return checkGameOver();
         }
     }, 1000);
+};
+
+startGamebtn.addEventListener("click", () => {
+    startCountdown();
     startGame();
 });
 
