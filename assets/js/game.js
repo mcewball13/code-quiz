@@ -3,7 +3,7 @@ let timeLeft = 40;
 let currentQuestion = {};
 let score = 0;
 let questionsPool = [];
-let outOfTime = false;
+let gameOver = false;
 const correctAnswer = 10;
 const timePenalty = 10;
 
@@ -100,6 +100,7 @@ let timeLeftEl = document.querySelector("#countdown");
 let timeLeftContainEl = document.querySelector("#time-left-container");
 let questionEl = document.querySelector("#question");
 let paBtns = document.querySelectorAll(".pa-btn");
+let btns = document.querySelectorAll(".btn");
 let startGamebtn = document.querySelector("#start-game-btn");
 let rightWrongEl = document.querySelector("#right-wrong");
 let highScoreLink = document.querySelector("#high-score-link");
@@ -146,6 +147,11 @@ startGame = () => {
 checkGameOver = () => {
     // Check if there are more question and more time
     if (outOfTime) {
+        gameOver = true;
+
+        btns.forEach((btn) => {
+            btn.style.display = "none";
+        });
         // if no time, send to end page
         return setInterval(() => {
             location.assign("./end.html");
@@ -153,6 +159,7 @@ checkGameOver = () => {
     }
     // if there are no more questions send to end page
     if (questionsPool.length === 0) {
+        gameOver = true;
         return location.assign("./end.html");
     }
 };

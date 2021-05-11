@@ -6,7 +6,7 @@ let inputNameEl = document.querySelector("#name-input");
 let formEl = document.querySelector("form");
 let alertWinLoseEl = document.querySelector("#alert-win-lose");
 let tryAgainBtn = document.querySelector("#try-again-btn");
-let currentLeaderScoreEl = document.querySelector("#current-leader-score");
+let currentLeaderScoreEl = document.querySelector("#end-modal-high-score");
 let submitNameBtn = document.querySelector("#submit-name-btn");
 let endMainHighSchool = document.querySelector("#end-modal-high-score");
 
@@ -25,6 +25,8 @@ currentScoreEl.forEach((el) => {
 
 // populate current leader elements
 if (!currentLeader) {
+    alertWinLoseEl.textContent =
+        "Congratulations! You are the New High Scorer!";
     currentLeaderEl.forEach((el) => {
         el.textContent = "Be The First!";
     });
