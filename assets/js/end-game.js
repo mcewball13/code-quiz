@@ -55,6 +55,7 @@ removeCurrentScore = () => {
 
 // event listeners
 submitNameBtn.addEventListener("click", () => {
+    removeCurrentScore();
     localStorage.setItem("currentLeader", inputNameEl.value);
     document.location.assign("./index.html");
 });
