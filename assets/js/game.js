@@ -103,6 +103,7 @@ let paBtns = document.querySelectorAll(".pa-btn");
 let startGamebtn = document.querySelector("#start-game-btn");
 let rightWrongEl = document.querySelector("#right-wrong");
 let highScoreLink = document.querySelector("#high-score-link");
+
 // Initialize DOM element Content
 
 // local storage
@@ -143,21 +144,26 @@ startGame = () => {
 };
 
 checkGameOver = () => {
+    // Check if there are more question and more time
     if (outOfTime) {
+        // if no time, send to end page
         return setInterval(() => {
             location.assign("./end.html");
         }, 1000);
     }
+    // if there are no more questions send to end page
     if (questionsPool.length === 0) {
         return location.assign("./end.html");
     }
 };
 populateNextQuestion = () => {
     checkGameOver();
+    // Get random number from the pool of questions
     let questionIndex = Math.floor(Math.random() * questionsPool.length);
+    // display the current question based on the random index
     currentQuestion = questionsPool[questionIndex];
     questionEl.textContent = currentQuestion.question;
-
+    // Check to see if there are les than 4 answers, if so hide the buttons that dont apply
     paBtns.forEach((paBtn) => {
         let property = paBtn.dataset["property"];
         paBtn.innerText = currentQuestion[property];
@@ -167,23 +173,36 @@ populateNextQuestion = () => {
             paBtn.parentElement.style.display = "inherit";
         }
     });
+    // remove the questions from the available questions
     questionsPool.splice(questionIndex, 1);
 };
+// add a click event listener to all the anser buttons
 paBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-        rightWrongEl.textContent = "";
+        // same the clicked button in a variable
         let selectedAnswer = e.target;
+        // get the property value from the selected answer
         let selectedAnswerProperty = selectedAnswer.dataset["property"];
+
+        // check if the selected propert value equals the answer object property
         if (selectedAnswerProperty == currentQuestion.answer) {
+            rightWrongEl.textContent = "Right!";
             score += correctAnswer;
+            // increase score in localstorage
             localStorage.setItem("currentScore", score);
+            // display score on DOM
             currentScoreEl.textContent = score;
         } else {
+            rightWrongEl.textContent = "Wrong!";
+            // if answered incorrectly, remove penalty from clock
             timeLeft -= timePenalty;
         }
+
+        // call the next question
         populateNextQuestion();
     });
 });
+
 // set up a timer function when button is clicked and call the game start
 startCountdown = () => {
     timeLeftEl.textContent = "Time Left: " + timeLeft;
@@ -198,11 +217,12 @@ startCountdown = () => {
         }
     }, 1000);
 };
-
+// listen for the start game click
 startGamebtn.addEventListener("click", () => {
     startCountdown();
     startGame();
 });
+// listen for the view high scores link click and toggle modal showing info
 highScoreLink.addEventListener("click", () => {
     modalHighScoreEl.classList.toggle("display-none");
 });

@@ -8,6 +8,7 @@ let alertWinLoseEl = document.querySelector("#alert-win-lose");
 let tryAgainBtn = document.querySelector("#try-again-btn");
 let currentLeaderScoreEl = document.querySelector("#current-leader-score");
 let submitNameBtn = document.querySelector("#submit-name-btn");
+let endMainHighSchool = document.querySelector("#end-modal-high-score");
 
 // Capture Local storage
 let currentLeader = localStorage.getItem("currentLeader");
@@ -27,11 +28,12 @@ if (!currentLeader) {
     currentLeaderEl.textContent = "You're the Leader";
     localStorage.setItem("currentHighScore", currentScore);
 } else {
+    endMainHighSchool.textContent = currentHighScore;
     currentLeaderEl.textContent = currentLeader + " - " + currentHighScore;
     if (currentScore > currentHighScore) {
         currentLeaderEl.textContent = "Enter Name";
         alertWinLoseEl.textContent =
-            "Congratulations! You are the High Scorer!";
+            "Congratulations! You are the New High Scorer!";
         localStorage.setItem("currentHighScore", currentScore);
     } else {
         alertWinLoseEl.textContent = "So close! Try again?";
@@ -39,7 +41,6 @@ if (!currentLeader) {
         inputNameContainerEl.style.display = "none";
     }
 }
-
 
 // remove current score from database
 removeCurrentScore = () => {
