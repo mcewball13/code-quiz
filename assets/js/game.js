@@ -135,11 +135,11 @@ startGame = () => {
 checkGameOver = () => {
     if (outOfTime) {
         return setInterval(() => {
-            location.assign("/end.html");
+            location.assign("./end.html");
         }, 1000);
     }
     if (questionsPool.length === 0) {
-        return location.assign("/end.html");
+        return location.assign("./end.html");
     }
 };
 populateNextQuestion = () => {

@@ -2,6 +2,7 @@
 let currentLeaderEl = document.querySelector("#current-leader");
 let currentLeaderMainEl = document.querySelector("#current-leader-main");
 let currentScoreEl = document.querySelector("#current-score");
+let inputNameContainerEl = document.querySelector("#name-input-container");
 let inputNameEl = document.querySelector("#name-input");
 let endCurrentScoreEl = document.querySelector("#end-current-score");
 let alertWinLoseEl = document.querySelector("#alert-win-lose");
@@ -16,7 +17,6 @@ let currentHighScore = localStorage.getItem("currentHighScore");
 endCurrentScoreEl.textContent = currentScore;
 currentScoreEl.textContent = currentScore;
 // populate current leader elements
-debugger;
 if (!currentLeader) {
     currentLeaderEl.textContent = "You're the Leader";
     currentLeaderMainEl.textContent = "You're the Leader";
@@ -32,14 +32,18 @@ if (!currentLeader) {
     } else {
         alertWinLoseEl.textContent = "So close! Try again?";
         tryAgainBtn.style.display = "inherit";
-        inputNameEl.style.display = "none";
+        inputNameContainerEl.style.display = "none";
     }
 }
 // remove current score from database
 removeCurrentScore = () => {
     localStorage.removeItem("currentScore");
 };
-// if there is a current leader or if there isn't
+
+// event listeners
+inputNameEl.addEventListener("input", (e) => {
+    localStorage.setItem("currentLeader", e.target.value);
+});
 
 tryAgainBtn.addEventListener("click", () => {
     removeCurrentScore();

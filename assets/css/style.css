@@ -46,7 +46,6 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 /* HEADER STYLES */
 header {
@@ -146,14 +145,12 @@ main {
     justify-content: center;
     align-items: center;
     height: 80vh;
-
 }
 
 #end-input-container {
-
     text-align: center;
     width: 70%;
-    height: 40vh;
+    height: auto;
     display: flex;
     margin: 0 auto;
     flex-direction: column;
@@ -181,18 +178,22 @@ main {
     align-items: center;
     justify-content: center;
 }
+#name-input-container {
+    display: flex;
+    margin-top: 20px;
+}
 
 #name-input {
     padding: 10px;
     border-radius: 10px;
     border-style: hidden;
     font-size: 1.5rem;
+    margin-right: 25px;
 }
 #name-input:focus {
     outline: none;
     border: 1px solid black;
     box-shadow: 0 0 10px rgba(77, 77, 77, 0.57);
-    
 }
 #try-again-btn {
     display: none;
@@ -207,5 +208,9 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+}
+#submit-name-btn {
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.33);
 }
