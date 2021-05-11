@@ -25,7 +25,10 @@ currentScoreEl.forEach((el) => {
 
 // populate current leader elements
 if (!currentLeader) {
-    currentLeaderEl.textContent = "You're the Leader";
+    currentLeaderEl.forEach((el) => {
+        el.textContent = "Be The First!";
+    });
+    currentLeaderScoreEl.textContent = "No High Score Yet!";
     localStorage.setItem("currentHighScore", currentScore);
 } else {
     endMainHighSchool.textContent = currentHighScore;
