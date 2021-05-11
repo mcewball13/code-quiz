@@ -33,6 +33,7 @@ if (!currentLeader) {
 } else {
     endMainHighSchool.textContent = currentHighScore;
     currentLeaderEl.textContent = currentLeader + " - " + currentHighScore;
+    // Check if they are the winner
     if (currentScore > currentHighScore) {
         currentLeaderEl.textContent = "Enter Name";
         alertWinLoseEl.textContent =
