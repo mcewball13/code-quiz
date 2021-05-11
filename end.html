@@ -16,7 +16,7 @@
             <div id="current-leader-container">
                 <h3 class="highlight">
                     Current Leader:
-                    <span id="current-leader"></span>
+                    <span class="current-leader"></span>
                 </h3>
             </div>
             <!-- high score label -->
@@ -26,18 +26,19 @@
                 </div>
                 <div id="current-score-container">
                     <h3 class="highlight">
-                        Current Score: <span id="current-score"></span>
+                        Current Score: <span class="current-score"></span>
                     </h3>
                 </div>
             </div>
         </header>
         <main id="end-main">
+            
             <div id="end-input-container">
                 <h1>Here's how you did!</h1>
                 <div id="end-scores-container">
                     <h2>
                         Current Leader:
-                        <span id="current-leader-main" class="label-values"
+                        <span class="label-values current-leader"
                             ><span
                                 id="end-current-leader-score"
                                 class="label-values"
@@ -46,10 +47,7 @@
                     </h2>
                     <h2>
                         Your Score:
-                        <span
-                            class="label-values"
-                            id="end-current-score"
-                        ></span>
+                        <span class="label-values current-score"></span>
                     </h2>
                     <div id="end-message">
                         <h3 id="alert-win-lose"></h3>
@@ -59,14 +57,14 @@
                     </div>
                 </div>
 
-                <div id="name-input-container">
+                <form id="name-input-container">
                     <input
                         type="text"
                         placeholder="Enter Your Name"
                         id="name-input"
                     />
-                    <button class="btn" id="submit-name-btn">Submit</button>
-                </div>
+                    <input type="button" value="Submit" id="submit-name-btn" />
+                </form>
             </div>
         </main>
         <script src="./assets/js/end-game.js"></script>

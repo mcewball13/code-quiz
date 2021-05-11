@@ -1,31 +1,35 @@
 // Capture Elements
-let currentLeaderEl = document.querySelector("#current-leader");
-let currentLeaderMainEl = document.querySelector("#current-leader-main");
-let currentScoreEl = document.querySelector("#current-score");
+let currentLeaderEl = document.querySelectorAll(".current-leader");
+let currentScoreEl = document.querySelectorAll(".current-score");
 let inputNameContainerEl = document.querySelector("#name-input-container");
 let inputNameEl = document.querySelector("#name-input");
-let endCurrentScoreEl = document.querySelector("#end-current-score");
+let formEl = document.querySelector("form");
 let alertWinLoseEl = document.querySelector("#alert-win-lose");
 let tryAgainBtn = document.querySelector("#try-again-btn");
+let currentLeaderScoreEl = document.querySelector("#current-leader-score");
+let submitNameBtn = document.querySelector("#submit-name-btn");
 
 // Capture Local storage
 let currentLeader = localStorage.getItem("currentLeader");
 let currentScore = localStorage.getItem("currentScore");
 let currentHighScore = localStorage.getItem("currentHighScore");
 
-// Display Current Score
-endCurrentScoreEl.textContent = currentScore;
-currentScoreEl.textContent = currentScore;
+// Display Current leader and Score
+currentLeaderEl.forEach((el) => {
+    el.textContent = currentLeader;
+});
+currentScoreEl.forEach((el) => {
+    el.textContent = currentScore;
+});
+
 // populate current leader elements
 if (!currentLeader) {
     currentLeaderEl.textContent = "You're the Leader";
-    currentLeaderMainEl.textContent = "You're the Leader";
     localStorage.setItem("currentHighScore", currentScore);
 } else {
     currentLeaderEl.textContent = currentLeader + " - " + currentHighScore;
-    currentLeaderMainEl.textContent = currentLeader + " - " + currentHighScore;
     if (currentScore > currentHighScore) {
-        // currentLeaderEl.textContent = "Enter Name";
+        currentLeaderEl.textContent = "Enter Name";
         alertWinLoseEl.textContent =
             "Congratulations! You are the High Scorer!";
         localStorage.setItem("currentHighScore", currentScore);
@@ -35,17 +39,20 @@ if (!currentLeader) {
         inputNameContainerEl.style.display = "none";
     }
 }
+
+
 // remove current score from database
 removeCurrentScore = () => {
     localStorage.removeItem("currentScore");
 };
 
 // event listeners
-inputNameEl.addEventListener("input", (e) => {
-    localStorage.setItem("currentLeader", e.target.value);
+submitNameBtn.addEventListener("click", () => {
+    localStorage.setItem("currentLeader", inputNameEl.value);
+    document.location.assign("./index.html");
 });
 
 tryAgainBtn.addEventListener("click", () => {
     removeCurrentScore();
-    location.assign("/index.html");
+    document.location.assign("./index.html");
 });

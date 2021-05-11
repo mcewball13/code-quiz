@@ -92,7 +92,9 @@ var questions = [
 
 // Capture DOM El
 let modalEl = document.querySelector("#start-modal");
-let currentLeaderEl = document.querySelector("#current-leader");
+let modalHighScoreEl = document.querySelector("#modal-high-score");
+let currentLeaderEl = document.querySelectorAll(".current-leader");
+let currentLeaderScoreEl = document.querySelector("#current-leader-score");
 let currentScoreEl = document.querySelector("#current-score");
 let timeLeftEl = document.querySelector("#countdown");
 let timeLeftContainEl = document.querySelector("#time-left-container");
@@ -100,6 +102,7 @@ let questionEl = document.querySelector("#question");
 let paBtns = document.querySelectorAll(".pa-btn");
 let startGamebtn = document.querySelector("#start-game-btn");
 let rightWrongEl = document.querySelector("#right-wrong");
+let highScoreLink = document.querySelector("#high-score-link");
 // Initialize DOM element Content
 
 // local storage
@@ -108,6 +111,9 @@ let currentScore = localStorage.getItem("currentScore");
 let currentHighScore = localStorage.getItem("currentHighScore");
 
 // updates variables with current information
+currentLeaderEl.forEach((el) => {
+    el.textContent = currentLeader;
+});
 
 setLeader = () => {
     localStorage.setItem("currentLeader", currentScore);
@@ -115,10 +121,14 @@ setLeader = () => {
 
 // Set current leader in header on Page;
 if (!currentLeader) {
-    currentLeaderEl.textContent = "Be The First!";
+    currentLeaderEl.forEach((el) => {
+        el.textContent = "Be The First!";
+    });
 } else {
-    currentLeaderEl.textContent = currentLeader + " - " + currentHighScore;
+    currentScoreEl.textContent = currentLeader + " - " + currentHighScore;
+    currentLeaderScoreEl.textContent = currentHighScore;
 }
+
 currentScoreEl.textContent = "No Score Yet!";
 
 startGame = () => {
@@ -161,6 +171,7 @@ populateNextQuestion = () => {
 };
 paBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
+        rightWrongEl.textContent = "";
         let selectedAnswer = e.target;
         let selectedAnswerProperty = selectedAnswer.dataset["property"];
         if (selectedAnswerProperty == currentQuestion.answer) {
@@ -191,6 +202,9 @@ startCountdown = () => {
 startGamebtn.addEventListener("click", () => {
     startCountdown();
     startGame();
+});
+highScoreLink.addEventListener("click", () => {
+    modalHighScoreEl.classList.toggle("display-none");
 });
 
 // current leader append child with value of high scorer else Be the First!

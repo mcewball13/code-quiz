@@ -21,13 +21,13 @@
             <div id="current-leader-container">
                 <h3 class="highlight">
                     Current Leader:
-                    <span id="current-leader"></span>
+                    <span class="current-leader"></span>
                 </h3>
             </div>
             <!-- high score label -->
             <div id="score-container">
                 <div id="high-score-link">
-                    <a href="#">VIEW HIGH SCORES</a>
+                    <a href="#">TOGGLE HIGH SCORES</a>
                 </div>
                 <div id="current-score-container">
                     <h3 class="highlight">
@@ -37,6 +37,14 @@
             </div>
         </header>
         <main>
+            <!-- High Score Modal -->
+            <div id="modal-high-score" class="display-none">
+                <h2>High Score</h2>
+                <h3>Current Leader: <span class="current-leader"></span></h3>
+                <h3>
+                    Current High Score: <span id="current-leader-score"></span>
+                </h3>
+            </div>
             <!-- Start Modal -->
             <div id="start-modal">
                 <h1>Coding quiz Challenge</h1>
