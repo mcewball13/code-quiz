@@ -46,6 +46,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 /* HEADER STYLES */
 header {
@@ -139,4 +140,72 @@ main {
     background-color: rgba(169, 169, 169, 0.741);
     padding: 20px;
 }
+#end-main {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
 
+}
+
+#end-input-container {
+
+    text-align: center;
+    width: 70%;
+    height: 40vh;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(228, 228, 228, 0.741);
+    backdrop-filter: blur(6px);
+    padding: 40px;
+    min-height: 20vw;
+    border-radius: 50px;
+    /* position: absolute; */
+    left: 0;
+    right: 0;
+}
+.label-values {
+    font-size: 3rem;
+    font-weight: 400;
+}
+#end-scores-container {
+    height: 40%;
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#name-input {
+    padding: 10px;
+    border-radius: 10px;
+    border-style: hidden;
+    font-size: 1.5rem;
+}
+#name-input:focus {
+    outline: none;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(77, 77, 77, 0.57);
+    
+}
+#try-again-btn {
+    display: none;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.33);
+}
+#end-message {
+    margin-top: 10vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}

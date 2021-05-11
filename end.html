@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <title>Game Over</title>
+    </head>
+    <body>
+        <header>
+            <div id="logo-container">
+                <h1>code-quiz</h1>
+            </div>
+            <!-- current leader label -->
+            <div id="current-leader-container">
+                <h3 class="highlight">
+                    Current Leader:
+                    <span id="current-leader"></span>
+                </h3>
+            </div>
+            <!-- high score label -->
+            <div id="score-container">
+                <div id="high-score-link">
+                    <a href="#">VIEW HIGH SCORES</a>
+                </div>
+                <div id="current-score-container">
+                    <h3 class="highlight">
+                        Current Score: <span id="current-score"></span>
+                    </h3>
+                </div>
+            </div>
+        </header>
+        <main id="end-main">
+            <div id="end-input-container">
+                <h1>Here's how you did!</h1>
+                <div id="end-scores-container">
+                    <h2>
+                        Current Leader:
+                        <span id="current-leader-main"
+                            class="label-values"><span id="end-current-leader-score" class="label-values"></span
+                        ></span>
+                    </h2>
+                    <h2>Your Score: <span class="label-values" id="end-current-score"></span></h2>
+                    <div id="end-message">
+                        <h3 id="alert-win-lose"></h3>
+                        <button class="btn" id="try-again-btn">Try Again</button>
+                    </div>
+                </div>
+
+                <input
+                    type="text"
+                    placeholder="Enter Your Name"
+                    id="name-input"
+                />
+            </div>
+        </main>
+        <script src="./assets/js/end-game.js"></script>
+    </body>
+</html>

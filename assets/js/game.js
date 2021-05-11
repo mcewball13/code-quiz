@@ -1,5 +1,5 @@
 // global vars
-let timeLeft = 3;
+let timeLeft = 40;
 let currentQuestion = {};
 let score = 0;
 let questionsPool = [];
@@ -100,52 +100,45 @@ let questionEl = document.querySelector("#question");
 let paBtns = document.querySelectorAll(".pa-btn");
 let startGamebtn = document.querySelector("#start-game-btn");
 let rightWrongEl = document.querySelector("#right-wrong");
+// Initialize DOM element Content
 
 // local storage
-let currentLeader = localStorage.getItem("highScorer");
+let currentLeader = localStorage.getItem("currentLeader");
 let currentScore = localStorage.getItem("currentScore");
+let currentHighScore = localStorage.getItem("currentHighScore");
 
-// Set current leader in header on Page
-if (currentLeader === null) {
+// updates variables with current information
+
+setLeader = () => {
+    localStorage.setItem("currentLeader", currentScore);
+};
+
+// Set current leader in header on Page;
+if (!currentLeader) {
     currentLeaderEl.textContent = "Be The First!";
 } else {
-    currentLeaderEl.textContent = currentLeader;
+    currentLeaderEl.textContent = currentLeader + " - " + currentHighScore;
 }
-if (currentScore === null) {
-    currentScoreEl.textContent = "No Score Yet!";
-} else {
-    currentScoreEl.textContent = currentScore;
-}
+currentScoreEl.textContent = "No Score Yet!";
 
 startGame = () => {
-    
+    currentScoreEl.textContent = "No Score Yet!";
     outOfTime = false;
     score = 0;
     questionsPool = [...questions];
+
     populateNextQuestion();
     // Hide the modal
     modalEl.style.display = "none";
 };
 
-checkHighScore = () => {
-    if (currentLeader !== "null") {
-        if (currentScore > currentLeader) {
-            localStorage.setItem("highScorer", currentScore);
-        }
-        // Else better luck next time
-    } else {
-        localStorage.setItem("highScorer", currentScore);
-    }
-};
 checkGameOver = () => {
     if (outOfTime) {
-        checkHighScore();
-        setInterval(() => {
-            return location.assign("/end.html");
+        return setInterval(() => {
+            location.assign("/end.html");
         }, 1000);
     }
     if (questionsPool.length === 0) {
-        checkHighScore();
         return location.assign("/end.html");
     }
 };
@@ -173,6 +166,7 @@ paBtns.forEach((btn) => {
         if (selectedAnswerProperty == currentQuestion.answer) {
             score += correctAnswer;
             localStorage.setItem("currentScore", score);
+            currentScoreEl.textContent = score;
         } else {
             timeLeft -= timePenalty;
         }
@@ -186,7 +180,6 @@ startCountdown = () => {
         timeLeftEl.textContent = "Time Left: " + (timeLeft - 1);
         timeLeft--;
         if (timeLeft < 0) {
-            // timeLeftEl.textContent = "Time Left: " + timeLeft;
             timeLeftEl.textContent = "Times up!";
             clearInterval(timerCountdown);
             outOfTime = true;
