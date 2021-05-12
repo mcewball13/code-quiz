@@ -255,9 +255,6 @@ header {
     visibility: hidden;
 }
 @media only screen and (max-width: 968px) {
-    h1 {
-        font-size: ;
-    }
     header {
         justify-content: center;
         flex-wrap: wrap;
