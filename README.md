@@ -13,4 +13,9 @@ I used a variety of things including HTML, CSS, and Javascript.
 ![](./assets/images/code-quiz.gif)
 
 ## Inspiration and Resources
+
 There were a few points where I got stuck and I used some youtube videos to get me unstuck. The main channel that helped me was James Q Quicks Channel. You can see his channel here: https://www.youtube.com/c/JamesQQuick/featured.
+
+## Live Link
+
+https://mcewball13.github.io/code-quiz/
