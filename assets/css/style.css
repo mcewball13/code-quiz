@@ -49,6 +49,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(239, 239, 239)
 }
 .correct {
     background-color: rgb(40, 108, 40);
