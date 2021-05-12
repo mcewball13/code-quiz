@@ -1,5 +1,5 @@
 // global vars
-let timeLeft = 40;
+let timeLeft = 60;
 let currentQuestion = {};
 let score = 0;
 let questionsPool = [];
