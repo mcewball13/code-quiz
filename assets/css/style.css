@@ -255,6 +255,9 @@ header {
     visibility: hidden;
 }
 @media only screen and (max-width: 968px) {
+    h1 {
+        font-size: ;
+    }
     header {
         justify-content: center;
         flex-wrap: wrap;
@@ -268,6 +271,10 @@ header {
     #start-modal {
         width: 80%;
     }
+    #start-modal .btn {
+        width: 100%;
+    }
+
     #possible-answers .btn {
         width: 60%;
     }
@@ -276,24 +283,23 @@ header {
     }
 }
 @media only screen and (max-width: 768px) {
-   
 }
 @media only screen and (max-width: 575px) {
+    h1 {
+        font-size: 12vw;
+    }
     header h3 {
         font-size: 6vw;
     }
-    #start-game-btn {
-        width: 50%;
-    }
+
     #start-modal p {
         font-size: 4vw;
     }
     #end-input-container {
         width: 90%;
     }
-    
+
     #end-input-container h2 {
         font-size: 6vw;
     }
 }
-
