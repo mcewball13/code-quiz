@@ -104,6 +104,7 @@ header {
 }
 .pa-label-letters {
     background-color: rgba(169, 169, 169, 0.741);
+    background-color: rgb(169, 169, 169);
     padding: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
