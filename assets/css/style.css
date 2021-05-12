@@ -32,6 +32,9 @@ a {
     text-decoration: none;
     color: black;
 }
+main {
+    position: relative;
+}
 /* General styles */
 .highlight {
     font-weight: 900;
@@ -63,10 +66,7 @@ header {
     background-color: rgb(215, 215, 215);
     position: relative;
 }
-main {
-    /* visibility: hidden; */
-    position: relative;
-}
+
 #logo-container h1 {
     font-weight: 400;
 }
@@ -81,6 +81,7 @@ main {
 #current-score {
     font-weight: 400;
 }
+/* TIME LEFT */
 #time-left-container {
     display: block;
     text-align: center;
@@ -89,6 +90,7 @@ main {
 #countdown {
     font-size: 2rem;
 }
+/* QUESTION BLOCK */
 #question {
     text-align: center;
 }
@@ -113,10 +115,16 @@ main {
 #right-wrong {
     text-align: center;
     padding: 20px;
+}
+#alert-win-lose {
+    color: rgb(237, 41, 41);
+}
+.border-top {
     border-top: black 2px solid;
     width: 80%;
     margin: 0 auto;
 }
+/* MODALS */
 #start-modal {
     text-align: center;
     width: 70%;
@@ -145,6 +153,7 @@ main {
     background-color: rgba(169, 169, 169, 0.741);
     padding: 20px;
 }
+/* END PAGE */
 #end-main {
     position: relative;
     display: flex;
@@ -171,6 +180,7 @@ main {
     left: 0;
     right: 0;
 }
+/* LABEL ELEMENTS */
 .label-values {
     font-size: 3rem;
     font-weight: 400;
@@ -240,6 +250,50 @@ main {
     right: 0;
     z-index: 9;
 }
+/* TOGGLE STYLE */
 .display-none {
     visibility: hidden;
 }
+@media only screen and (max-width: 968px) {
+    header {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    header div {
+        width: 100%;
+    }
+    header h3 {
+        font-size: 4vw;
+    }
+    #start-modal {
+        width: 80%;
+    }
+    #possible-answers .btn {
+        width: 60%;
+    }
+    #end-input-container .btn {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 768px) {
+   
+}
+@media only screen and (max-width: 575px) {
+    header h3 {
+        font-size: 6vw;
+    }
+    #start-game-btn {
+        width: 50%;
+    }
+    #start-modal p {
+        font-size: 4vw;
+    }
+    #end-input-container {
+        width: 90%;
+    }
+    
+    #end-input-container h2 {
+        font-size: 6vw;
+    }
+}
+

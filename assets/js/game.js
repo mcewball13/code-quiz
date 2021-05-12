@@ -190,7 +190,7 @@ paBtns.forEach((btn) => {
         let selectedAnswer = e.target;
         // get the property value from the selected answer
         let selectedAnswerProperty = selectedAnswer.dataset["property"];
-
+        rightWrongEl.style.display = "inherit";
         // check if the selected propert value equals the answer object property
         if (selectedAnswerProperty == currentQuestion.answer) {
             rightWrongEl.textContent = "Right!";
@@ -204,7 +204,9 @@ paBtns.forEach((btn) => {
             // if answered incorrectly, remove penalty from clock
             timeLeft -= timePenalty;
         }
-
+        setTimeout(() => {
+            rightWrongEl.style.display = "none";
+        }, 1000);
         // call the next question
         populateNextQuestion();
     });
